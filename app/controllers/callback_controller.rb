@@ -1,5 +1,5 @@
-class LineController < ApplicationController
-  def callback
+class CallbackController < ApplicationController
+  def create
     unless Line::Callback.validate_signature? request
       render status: 400, text: 'Bad Request' and return
     else
