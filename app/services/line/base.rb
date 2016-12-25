@@ -17,5 +17,12 @@ module Line
         {}
       end
     end
+
+    def get_message_content message_id
+      response = client.get_message_content(message_id)
+      tf = Tempfile.open("content")
+      tf.binmode
+      tf.write(response.body)
+    end
   end
 end
