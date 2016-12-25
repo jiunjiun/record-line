@@ -62,6 +62,9 @@ group :development, :test do # 也包含 test 是為了讓寫 test case 時也�
   # RSpec
   gem "rspec-rails"
   gem "factory_girl_rails"
+
+  # DB
+  gem 'rails-erd'
 end
 
 # config file
