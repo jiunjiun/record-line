@@ -63,7 +63,7 @@ module Line
         user_id = source['userId']
         profile = get_profile user_id
         User.find_or_create_by(user_id: user_id) do |user|
-          user.name           = profile[:name]
+          user.name           = profile[:displayName]
           user.avatar         = profile[:pictureUrl]
           user.status_message = profile[:statusMessage]
         end
