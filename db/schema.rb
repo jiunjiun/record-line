@@ -10,9 +10,84 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161225141524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "sourceable_type"
+    t.integer  "sourceable_id"
+    t.string   "templatable_type"
+    t.integer  "templatable_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["sourceable_type", "sourceable_id"], name: "index_messages_on_sourceable_type_and_sourceable_id", using: :btree
+    t.index ["templatable_type", "templatable_id"], name: "index_messages_on_templatable_type_and_templatable_id", using: :btree
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "template_audios", force: :cascade do |t|
+    t.string   "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "template_images", force: :cascade do |t|
+    t.string   "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "template_locations", force: :cascade do |t|
+    t.string   "message_id"
+    t.string   "title"
+    t.string   "address"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "template_stickers", force: :cascade do |t|
+    t.string   "message_id"
+    t.string   "package_id"
+    t.string   "sticker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "template_texts", force: :cascade do |t|
+    t.string   "message_id"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "template_videos", force: :cascade do |t|
+    t.string   "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "name"
+    t.string   "avatar"
+    t.string   "status_message"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
 end
