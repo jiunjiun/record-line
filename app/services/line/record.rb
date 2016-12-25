@@ -34,15 +34,13 @@ module Line
           latitude  = event.message['latitude']
           longitude = event.message['longitude']
 
-          templatable = TemplateLocation.create {message_id: message_id, title: title,
-                          address: address, latitude: latitude, longitude: longitude}
+          templatable = TemplateLocation.create({message_id: message_id, title: title, address: address, latitude: latitude, longitude: longitude})
 
         when Line::Bot::Event::MessageType::Sticker
           package_id = event.message['packageId']
           sticker_id = event.message['stickerId']
 
-          templatable = TemplateLocation.create {message_id: message_id, package_id: package_id,
-                          sticker_id: sticker_id}
+          templatable = TemplateSticker.create({message_id: message_id, package_id: package_id, sticker_id: sticker_id})
 
         when Line::Bot::Event::MessageType::Unsupport
         end
