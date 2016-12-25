@@ -1,4 +1,6 @@
 class CallbackController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     unless Line::Callback.validate_signature? request
       render status: 400, text: 'Bad Request' and return
