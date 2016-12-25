@@ -17,16 +17,16 @@ module Line
         case event.type
         when Line::Bot::Event::MessageType::Text
           text = event.message['text']
-          templatable = TemplateText.create message_id: message_id, text: text
+          templatable = TemplateText.create! message_id: message_id, text: text
 
         when Line::Bot::Event::MessageType::Image
-          templatable = TemplateImage.create message_id: message_id
+          templatable = TemplateImage.create! message_id: message_id
 
         when Line::Bot::Event::MessageType::Video
-          templatable = TemplateVideo.create message_id: message_id
+          templatable = TemplateVideo.create! message_id: message_id
 
         when Line::Bot::Event::MessageType::Audio
-          templatable = TemplateAudio.create message_id: message_id
+          templatable = TemplateAudio.create! message_id: message_id
 
         when Line::Bot::Event::MessageType::Location
           title     = event.message['title']
@@ -34,13 +34,13 @@ module Line
           latitude  = event.message['latitude']
           longitude = event.message['longitude']
 
-          templatable = TemplateLocation.create({message_id: message_id, title: title, address: address, latitude: latitude, longitude: longitude})
+          templatable = TemplateLocation.create!({message_id: message_id, title: title, address: address, latitude: latitude, longitude: longitude})
 
         when Line::Bot::Event::MessageType::Sticker
           package_id = event.message['packageId']
           sticker_id = event.message['stickerId']
 
-          templatable = TemplateSticker.create({message_id: message_id, package_id: package_id, sticker_id: sticker_id})
+          templatable = TemplateSticker.create!({message_id: message_id, package_id: package_id, sticker_id: sticker_id})
 
         when Line::Bot::Event::MessageType::Unsupport
         end
@@ -54,7 +54,7 @@ module Line
 
     private
     def create_message
-      Message.create templatable: templatable, sourceable: sourceable
+      Message.create! templatable: templatable, sourceable: sourceable
     end
 
     def parse_sourceable source
