@@ -1,0 +1,9 @@
+.page-header
+  h1= @title
+- @messages.each do |message|
+  - case message.templatable_type
+  - when Message::Type::Text
+    p= message.templatable.text
+  - when Message::Type::Image
+    p= image_tag image_rs_path(message.templatable.message_id)
+
