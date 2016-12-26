@@ -23,6 +23,7 @@ module Line
       tf = Tempfile.open("content")
       tf.binmode
       tf.write(response.body)
+      tf
     end
   end
 end
