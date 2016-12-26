@@ -1,3 +1,11 @@
 class Room < ApplicationRecord
-  has_many :messages, as: :sourceable, dependent: :destroy
+  include SourceableConcerns
+  has_many :messages, -> { order(:created_at) }, as: :sourceable, dependent: :destroy
+
+  before_create :assign_code
+
+  private
+  def assign_code
+    self.code = generate_code Room
+  end
 end
