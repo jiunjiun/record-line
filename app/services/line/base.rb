@@ -20,10 +20,11 @@ module Line
 
     def get_message_content message_id
       response = client.get_message_content(message_id)
-      tf = Tempfile.open("content")
+      Rails.logger.debug { " -- response: #{response.to_json}" }
+      tf = Tempfile.open("#{Time.now.to_i}")
       tf.binmode
       tf.write(response.body)
-      tf
+      {file: tf, content_type: response['content-type']}
     end
   end
 end

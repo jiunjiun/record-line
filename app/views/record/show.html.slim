@@ -5,5 +5,8 @@
   - when Message::Type::Text
     p= message.templatable.text
   - when Message::Type::Image
-    p= image_tag image_rs_path(message.templatable.message_id)
-
+    p= image_tag file_rs_path(message.templatable.message_id)
+  - when Message::Type::Video, Message::Type::Audio
+    p= link_to 'Download', file_rs_path(message.templatable.message_id)
+  - when Message::Type::Location
+    p= link_to message.templatable.address, google_map_path(message.templatable), target: '_blank'

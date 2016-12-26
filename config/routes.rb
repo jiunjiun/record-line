@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :rs, controller: :record, only: [:show] do
     collection do
-      get 'img/:id', to: 'record#image', as: :image
+      get 'file/:id', to: 'record#file', as: :file
     end
   end
 

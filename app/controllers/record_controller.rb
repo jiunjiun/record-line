@@ -2,14 +2,14 @@ class RecordController < ApplicationController
   before_action :find_sourceable
 
   def show
-    @title = 'title'
+    @title = 'Messages'
     @messages = @sourceable.messages
   end
 
-  def image
+  def file
     message_id = params[:id]
-    file = Line::MessageContent.get message_id
-    send_file file.path, disposition: 'inline'
+    result = Line::MessageContent.get message_id
+    send_file result[:file].path, filename: result[:filename]
   end
 
   private
