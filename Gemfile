@@ -70,6 +70,9 @@ end
 # config file
 gem 'settingslogic'
 
+# environment variables
+gem 'figaro'
+
 #
 gem 'active_hash'
 gem 'decent_exposure', '3.0.0.beta2'
