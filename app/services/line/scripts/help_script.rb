@@ -13,8 +13,14 @@ module Line::Scripts
           message = event.message['text']
 
           if message =~ /^(help|HELP|Help)/
-            reply_message = 'help'
-            response = client.reply_message(event['replyToken'], reply_message)
+            reply_messages = [
+              {
+                type: 'sticker',
+                packageId: '2',
+                stickerId: '144',
+              }
+            ]
+            response = client.reply_message(event['replyToken'], reply_messages)
           end
         end
       end
