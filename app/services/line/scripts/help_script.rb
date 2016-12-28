@@ -15,6 +15,10 @@ module Line::Scripts
           if message =~ /^(help|HELP|Help)/
             reply_messages = [
               {
+                type: 'text',
+                text: "show - 檢視對話紀錄"
+              },
+              {
                 type: 'sticker',
                 packageId: '2',
                 stickerId: '144',
