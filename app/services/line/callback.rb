@@ -26,6 +26,7 @@ module Line
       events = client.parse_events_from(body)
       events.each do |event|
         Record.call event
+        ScriptsBase.assign event
       end
     end
   end
