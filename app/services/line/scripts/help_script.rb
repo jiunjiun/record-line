@@ -13,10 +13,16 @@ module Line::Scripts
           message = event.message['text']
 
           if message =~ /^(help|HELP|Help)/
+            role  = ''
+            role += "show         - 檢視對話紀錄\n"
+            role += "start_record - 開始紀錄\n"
+            role += "end_record   - 結束紀錄"
+
+
             reply_messages = [
               {
                 type: 'text',
-                text: "show - 檢視對話紀錄"
+                text: role
               },
               {
                 type: 'sticker',
