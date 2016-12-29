@@ -2,6 +2,7 @@ module Line
   class ScriptsBase < Base
     prepend Line::Scripts::HelpScript
     prepend Line::Scripts::ShowScript
+    prepend Line::Scripts::RecordScript
 
     attr_reader :event
 

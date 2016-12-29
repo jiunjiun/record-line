@@ -21,7 +21,7 @@ module Line
     def get_message_content message_id
       response = client.get_message_content(message_id)
       Rails.logger.info { " -- [GetMessageContent][Info]: #{response.to_json}" }
-      tf = Tempfile.open("#{Time.now.to_i}")
+      tf = Tempfile.open(Time.now.to_i.to_s)
       tf.binmode
       tf.write(response.body)
       {file: tf, content_type: response['content-type']}
