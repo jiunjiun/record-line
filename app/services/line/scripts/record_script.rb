@@ -94,7 +94,7 @@ module Line::Scripts
           reply_messages = [
             {
               type: 'text',
-              text: "已結束您的訊息!"
+              text: "已關閉紀錄!"
             },
             {
               type: 'text',
