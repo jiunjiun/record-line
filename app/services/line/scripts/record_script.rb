@@ -5,7 +5,7 @@ module Line::Scripts
       super
 
       # sourceable status is RECORD_START record message
-      Record.call event if sourceable.status == ApplicationRecord::Sourceable::RECORD_START
+      ::Line::Record.call event if sourceable.status == ApplicationRecord::Sourceable::RECORD_START
 
       # --- parse info
       case event
