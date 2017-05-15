@@ -102,6 +102,15 @@ module Line::Scripts
             }
           ]
         end
+      when /^(clean_record|CleanRecord)/
+        sourceable.messages.destroy_all
+
+        reply_messages = [
+          {
+            type: 'text',
+            text: "已清除您的紀錄!"
+          }
+        ]
       end
     end
   end

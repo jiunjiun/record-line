@@ -17,6 +17,9 @@ module Line
         case event.type
         when Line::Bot::Event::MessageType::Text
           text = event.message['text']
+
+          return if ignore_message? text
+
           @templatable = TemplateText.create! message_id: message_id, text: text
 
         when Line::Bot::Event::MessageType::Image
@@ -53,6 +56,10 @@ module Line
     end
 
     private
+    def ignore_message? text
+      text =~ /^(end_record|EndRecord|clean_record|CleanRecord)/
+    end
+
     def create_message
       Message.create! templatable: templatable, sourceable: sourceable
     end
